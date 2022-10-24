@@ -9,6 +9,8 @@ from pydantic import AnyHttpUrl, BaseModel, BaseSettings, validator
 class Settings(BaseSettings):
     PROJECT_NAME: str
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
+    DB_URL: str
+    TEMPLATES_DIR: str
 
     @validator("BACKEND_CORS_ORIGINS", pre=True)
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
