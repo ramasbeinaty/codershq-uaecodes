@@ -4,10 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 import logging
 
 from app.core.config import settings, logger_settings
-from app.api.api import api_router
+from app.api.base import api_router
+from app.db.base import engine, Base
 
 
 def get_application():
+
     # create the app
     app = FastAPI(title=settings.PROJECT_NAME)
 
@@ -18,6 +20,9 @@ def get_application():
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    # bind the database
+    Base.metadata.create_all(bind=engine)
 
     # add logger
     logger = logging.getLogger(logger_settings.LOGGER_NAME)
