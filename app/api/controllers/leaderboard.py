@@ -15,7 +15,7 @@ router = APIRouter()
 from fastapi.templating import Jinja2Templates
 
 # get the templates
-templates = Jinja2Templates(directory=("./app/templates"))
+templates = Jinja2Templates(directory=(settings.TEMPLATES_DIR))
 
 @router.get("/", response_model= List[ReadLeaderboard], status_code=status.HTTP_200_OK)
 async def read_leaderboard(request: Request, hx_request: Optional[str] = Header(None), db: Session = Depends(get_db), skip: int = 0, limit: int = 100):

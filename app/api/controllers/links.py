@@ -5,4 +5,4 @@ router = APIRouter()
 
 @router.get("/")
 async def redirect():
-        return RedirectResponse("https://typer.tiangolo.com")
+        return RedirectResponse("https://ai.gov.ae/uaecodes/")
