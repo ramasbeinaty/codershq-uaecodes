@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: uaecodes
+    build: .
+    env_file:
+        - .env
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+  db:
+    container_name: postgresql_db
+    image: postgres
+    # automatically restarts the container 
+    # when Docker daemon restarts or container is restarted manually
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=uaecodes
+    ports:
+      - 5432:5432
+
+  # pgadmin:
+  #   container_name: pgadmin4
+  #   image: dpage/pgadmin4
+  #   restart: always
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: root@root.com
+  #     PGADMIN_DEFAULT_PASSWORD: 123456
+  #     # PGADMIN_LISTEN_PORT: 80
+  #   ports:
+  #     - 5050:80
+
+volumes:
+  pgdata:
+  # pgadmin:
