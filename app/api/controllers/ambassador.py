@@ -5,7 +5,7 @@ from typing import List, Optional
 from app.core.config import settings
 
 from sqlalchemy.orm import Session
-from app.core.crud.leaderboard import get_leaderboard
+from app.core.crud.ambassador import get_ambassadors
 
 from app.db.base import get_db
 from app.schemas import ReadLeaderboard
@@ -18,10 +18,11 @@ from fastapi.templating import Jinja2Templates
 templates = Jinja2Templates(directory=(settings.TEMPLATES_DIR))
 
 @router.get("/", response_model= List[ReadLeaderboard], status_code=status.HTTP_200_OK)
-async def read_leaderboard(request: Request, hx_request: Optional[str] = Header(None), db: Session = Depends(get_db), skip: int = 0, limit: int = 100):
-        leaderboard = get_leaderboard(db=db, skip=skip, limit=limit)
+def read_ambassadors(request: Request, hx_request: Optional[str] = Header(None), db: Session = Depends(get_db), 
+                        skip: int = 0, limit: int = 100):
+        ambassadors = get_ambassadors(db=db, skip=skip, limit=limit)
 
-        context = {"request": request, 'ambassadors': leaderboard}
+        context = {"request": request, 'ambassadors': ambassadors}
         if hx_request:
                 return templates.TemplateResponse("partials/table.html", context)
 

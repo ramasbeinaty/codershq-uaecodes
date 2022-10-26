@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.api.controllers import leaderboard, links
+from app.api.controllers import ambassador, visitor
 
 api_router = APIRouter(prefix="/api")
 
@@ -9,5 +9,5 @@ api_router = APIRouter(prefix="/api")
 async def read_root():
         return {"status": "alive"}
 
-api_router.include_router(links.router, prefix="/links", tags="links")
-api_router.include_router(leaderboard.router, prefix="/leaderboard", tags="leaderboard")
+api_router.include_router(visitor.router, prefix="/links", tags="links")
+api_router.include_router(ambassador.router, prefix="/leaderboard", tags="leaderboard")
