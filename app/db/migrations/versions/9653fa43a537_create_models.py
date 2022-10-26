@@ -24,7 +24,7 @@ def upgrade() -> None:
     sa.Column('email', sa.String(), nullable=False),
     sa.Column('link', sa.String(), nullable=True),
     sa.Column('points', sa.Integer(), nullable=False, server_default=sa.schema.DefaultClause("0")),
-    sa.Column('is_valid', sa.Boolean(), nullable=False, server_default=sa.schema.DefaultClause("0")),
+    sa.Column('is_valid', sa.Boolean(), nullable=False, server_default=sa.schema.DefaultClause("1")),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )

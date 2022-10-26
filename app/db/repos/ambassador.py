@@ -1,5 +1,6 @@
 from os import link
 import string
+from turtle import update
 from sqlalchemy.orm import Session
 from app.db import models
 
@@ -15,6 +16,8 @@ def add_points_repo(db: Session, server_url: string):
         )
 
     ambassador.points += 1
+
+    # db.query(models.Ambassadors).filter(models.Ambassadors.link==server_url).update({"points": models.Ambassadors.points+=1})
 
     db.add(ambassador)
     db.commit()
