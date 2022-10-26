@@ -35,8 +35,9 @@
 
         <button class="px-3 py-1 bg-blue-600 text-white ml-4"
                 hx-get="/api/leaderboard/"
-                hx-target="#table-body"
-                hx-swap="beforeend">Refresh</button>
+                hx-trigger="load"
+                hx-target="#app"
+                hx-swap="innerHTML">Refresh</button>
 
 </div>
 </body>
