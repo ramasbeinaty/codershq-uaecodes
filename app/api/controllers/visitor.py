@@ -13,7 +13,7 @@ router = APIRouter()
 @router.get("/")
 def redirect(request: Request, db: Session = Depends(get_db)):
         client_ip = request.client.host
-        server_url = request.url
+        server_url = request.url.path
 
         try:
                 visitor = add_visitor(db=db, ip_address=client_ip, server_url=server_url)

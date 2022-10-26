@@ -1,12 +1,12 @@
 import string
-from ipaddress import ip_interface
+import ipaddress
 from sqlalchemy.orm import Session
 
 from app.db.repos.visitor import add_visitor_repo
 
 def add_visitor(db:Session, ip_address: string, server_url: string):
 
-    ip = ip_interface(ip_address)
+    ip = ipaddress.ip_address(ip_address)
     visitor = None
 
     try:

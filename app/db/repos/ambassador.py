@@ -10,7 +10,9 @@ def get_ambassadors_repo(db: Session, skip: int, limit: int):
     return leaderboard
 
 def add_points_repo(db: Session, server_url: string):
-    ambassador = models.Ambassadors(db.query(models.Ambassadors).filter(link==server_url).first())
+    ambassador = models.Ambassadors(
+        db.query(models.Ambassadors).filter(link==server_url).first()
+        )
 
     ambassador.points += 1
 
