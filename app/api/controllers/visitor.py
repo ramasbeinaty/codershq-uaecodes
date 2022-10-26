@@ -7,6 +7,8 @@ from app.db.base import get_db
 from app.core.crud.visitor import add_visitor
 from app.core.crud.ambassador import add_points
 
+from app.core.config import settings
+
 router = APIRouter()
 
 
@@ -21,4 +23,4 @@ def redirect(request: Request, db: Session = Depends(get_db)):
         except Exception as e:
                 print("Warning: failed to add points to ambassador - ", e)
 
-        return RedirectResponse("https://ai.gov.ae/uaecodes/")
+        return RedirectResponse(settings.TARGET_URL)

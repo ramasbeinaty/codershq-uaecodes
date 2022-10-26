@@ -3,6 +3,7 @@ from multiprocessing.util import LOGGER_NAME
 from typing import List, Union
 
 from pydantic import AnyHttpUrl, BaseModel, BaseSettings, validator
+import validators
 
 
 
@@ -11,9 +12,11 @@ class Settings(BaseSettings):
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
     DB_URL: str
     TEMPLATES_DIR: str
+    TARGET_URL: str
 
     AMBASSADORS_TABLE: str = "ambassadors"
     VISITORS_TABLE: str = "visitors"
+
 
     @validator("BACKEND_CORS_ORIGINS", pre=True)
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
