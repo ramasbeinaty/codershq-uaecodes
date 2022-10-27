@@ -12,14 +12,13 @@ from app.core.config import settings
 router = APIRouter()
 
 
-@router.get("/")
-def redirect(request: Request, db: Session = Depends(get_db)):
+@router.get("/{unique_url_key}")
+def redirect(unique_url_key, request: Request, db: Session = Depends(get_db)):
         client_ip = request.client.host
-        server_url = request.url.path
 
         try:
-                visitor = add_visitor(db=db, ip_address=client_ip, server_url=server_url)
-                points = add_points(db=db, server_url=server_url)
+                visitor = add_visitor(db=db, ip_address=client_ip, url_key=unique_url_key)
+                ambassador = add_points(db=db, url_key=unique_url_key)
         except Exception as e:
                 print("Warning: did not add a new point to ambassador - ", e)
 

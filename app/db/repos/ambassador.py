@@ -7,11 +7,11 @@ from app.db import models
 from app.db.base import settings
 
 def get_ambassadors_repo(db: Session, skip: int, limit: int):
-    leaderboard = db.query(models.Ambassadors).offset(skip).limit(limit).all() 
+    leaderboard = db.query(models.Ambassadors).order_by(models.Ambassadors.points.desc).offset(skip).limit(limit).all() 
     return leaderboard
 
-def add_points_repo(db: Session, server_url: string):
-    ambassador = db.query(models.Ambassadors).filter(models.Ambassadors.link==server_url).first()
+def add_points_repo(db: Session, url_key: string):
+    ambassador = db.query(models.Ambassadors).filter(models.Ambassadors.link==url_key).first()
     
     if ambassador is None:
         print("INFO: no ambassador found with given url")

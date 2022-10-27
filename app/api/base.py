@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 from app.api.controllers import ambassador, visitor
 
-api_router = APIRouter(prefix="/api")
+api_router = APIRouter()
 
 # root api endpoint
 @api_router.get("/")

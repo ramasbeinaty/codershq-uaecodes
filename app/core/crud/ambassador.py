@@ -7,17 +7,19 @@ def get_ambassadors(db: Session, skip: int, limit: int):
     ambassador = None
     try:
         ambassador = get_ambassadors_repo(db=db, skip=skip, limit=limit)
+        print("INFO: Successfully retrieved ambassadors")
     except Exception as e:
-        raise Exception("ERROR: Failed to add ambassador. Ambassador already exists - ", e)
+        raise Exception("ERROR: Failed to retrieve ambassadors - ", e)
 
     return ambassador
 
-def add_points(db: Session, server_url: string):
-    points = 0
+def add_points(db: Session, url_key: string):
+    ambassador = None
 
     try:
-        points = add_points_repo(db=db, server_url=server_url)
+        ambassador = add_points_repo(db=db, url_key=url_key)
+        print("INFO: Successfully added points to ambassador")
     except Exception as e:
-        raise Exception("ERROR: Failed to add points to ambassador - ", e)
+        raise ValueError("ERROR: Failed to add points to ambassador - ", e)
 
-    return points
+    return ambassador
