@@ -22,6 +22,9 @@ def read_ambassadors(request: Request, hx_request: Optional[str] = Header(None),
                         skip: int = 0, limit: int = 100):
         ambassadors = get_ambassadors(db=db, skip=skip, limit=limit)
 
+        if ambassadors is None:
+                ambassadors = []
+
         context = {"request": request, 'ambassadors': ambassadors}
         if hx_request:
                 return templates.TemplateResponse("partials/table.html", context)

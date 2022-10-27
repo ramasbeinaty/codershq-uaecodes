@@ -9,7 +9,7 @@ def get_ambassadors(db: Session, skip: int, limit: int):
         ambassador = get_ambassadors_repo(db=db, skip=skip, limit=limit)
         print("INFO: Successfully retrieved ambassadors")
     except Exception as e:
-        raise Exception("ERROR: Failed to retrieve ambassadors - ", e)
+        print("ERROR: Failed to retrieve ambassadors - ", e)
 
     return ambassador
 

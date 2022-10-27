@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
-import logging
-
-from app.core.config import settings, logger_settings
+from app.core.config import settings
 from app.api.base import api_router
 from app.db.base import engine, Base
 
@@ -25,12 +24,13 @@ def get_application():
     Base.metadata.create_all(bind=engine)
 
     # add logger
-    logger = logging.getLogger(logger_settings.LOGGER_NAME)
-
-    logger.info("dummy hi")
+    # logger = logging.getLogger(logger_settings.LOGGER_NAME)
 
     # add the endpoints to the app
     app.include_router(api_router)
+
+    # mount pictures
+    app.mount("/static", StaticFiles(directory=settings.STATIC_DIR), name="static")
 
     return app
 

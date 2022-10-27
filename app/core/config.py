@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
     DB_URL: str
     TEMPLATES_DIR: str
+    STATIC_DIR: str
     TARGET_URL: str
 
     AMBASSADORS_TABLE: str = "ambassadors"

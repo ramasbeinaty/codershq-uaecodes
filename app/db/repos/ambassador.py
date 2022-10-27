@@ -7,8 +7,8 @@ from app.db import models
 from app.db.base import settings
 
 def get_ambassadors_repo(db: Session, skip: int, limit: int):
-    leaderboard = db.query(models.Ambassadors).order_by(models.Ambassadors.points.desc).offset(skip).limit(limit).all() 
-    return leaderboard
+    ambassadors = db.query(models.Ambassadors).order_by(models.Ambassadors.points.desc()).offset(skip).limit(limit).all() 
+    return ambassadors
 
 def add_points_repo(db: Session, url_key: string):
     ambassador = db.query(models.Ambassadors).filter(models.Ambassadors.link==url_key).first()
