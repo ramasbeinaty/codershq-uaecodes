@@ -21,6 +21,6 @@ def redirect(request: Request, db: Session = Depends(get_db)):
                 visitor = add_visitor(db=db, ip_address=client_ip, server_url=server_url)
                 points = add_points(db=db, server_url=server_url)
         except Exception as e:
-                print("Warning: failed to add points to ambassador - ", e)
+                print("Warning: did not add a new point to ambassador - ", e)
 
         return RedirectResponse(settings.TARGET_URL)

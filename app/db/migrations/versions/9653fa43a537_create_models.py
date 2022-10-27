@@ -31,11 +31,9 @@ def upgrade() -> None:
     op.create_index(op.f('ix_ambassadors_id'), 'ambassadors', ['id'], unique=False)
     op.create_index(op.f('ix_ambassadors_link'), 'ambassadors', ['link'], unique=True)
     op.create_table('visitors',
-    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('ip_address', postgresql.INET(), nullable=False),
     sa.Column('url', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('ip_address', 'url'),
-    sa.UniqueConstraint('id')
     )
     op.create_index(op.f('ix_visitors_ip_address'), 'visitors', ['ip_address'], unique=False)
     op.create_index(op.f('ix_visitors_url'), 'visitors', ['url'], unique=False)

@@ -20,7 +20,6 @@ class Ambassadors(Base):
 class Visitor(Base):
     __tablename__ = settings.VISITORS_TABLE
 
-    id = Column(Integer, unique=True, nullable=False)
     ip_address = Column(INET, primary_key=True, index=True)
     url = Column(String, primary_key=True, index=True)
 
