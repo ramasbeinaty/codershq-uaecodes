@@ -11,7 +11,7 @@ services:
       - pgdata:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=4c4fc6bbfb41e00f4a8b106d584b07ab
+      - POSTGRES_PASSWORD=123456
       - POSTGRES_DB=uaecodes
     ports:
       - 5432:5432
