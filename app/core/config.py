@@ -3,7 +3,6 @@ from multiprocessing.util import LOGGER_NAME
 from typing import List, Union
 
 from pydantic import AnyHttpUrl, BaseModel, BaseSettings, validator
-import validators
 
 
 
