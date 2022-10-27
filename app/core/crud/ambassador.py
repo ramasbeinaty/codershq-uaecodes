@@ -18,7 +18,10 @@ def add_points(db: Session, url_key: string):
 
     try:
         ambassador = add_points_repo(db=db, url_key=url_key)
-        print("INFO: Successfully added points to ambassador")
+        if ambassador is None:
+            print("INFO: Did not add points to ambassador as this is not a first-time visitor")
+        else: 
+            print("INFO: Successfully added points to ambassador")
     except Exception as e:
         raise ValueError("ERROR: Failed to add points to ambassador - ", e)
 

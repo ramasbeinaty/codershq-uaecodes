@@ -15,7 +15,7 @@ def add_points_repo(db: Session, url_key: string):
     
     if ambassador is None:
         print("INFO: no ambassador found with given url")
-        return 0
+        return None
 
     ambassador.points += 1
 
