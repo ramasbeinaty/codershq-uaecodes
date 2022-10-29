@@ -1,7 +1,9 @@
 
 from app.db.base import Base
 
-from sqlalchemy import Boolean, Column, Integer, String
+from datetime import datetime
+
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, func
 from sqlalchemy.dialects.postgresql import INET
 
 from app.db.base import settings
@@ -22,4 +24,5 @@ class Visitor(Base):
 
     ip_address = Column(INET, primary_key=True, index=True)
     url = Column(String, primary_key=True, index=True)
+    datetime_created = Column(DateTime(timezone=True), server_default=func.now())
 
